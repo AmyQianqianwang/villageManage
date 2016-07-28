@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="user" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="false">error.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="tologin">login.jsp</result>
+			<result name="noright">noright.jsp</result>
+		</global-results>
+
+		<!-- 罗怀芍模块开始 -->
+		<action name="index" class="com.hwadee.action.VillageMessage"
+			method="index">
+			<result name="index">/villageMessage/index.jsp</result>
+		</action>
+
+		<action name="index_*" class="com.hwadee.action.VillageMessage"
+			method="{1}">
+			<result name="toedit">/villageMessage/edit.jsp</result>
+			<result name="edit" type="redirect">index.action</result>
+		</action>
+
+		<action name="projectforms_*" class="com.hwadee.action.ProjectFormsAction"
+			method="{1}">
+			<!-- 第0块 -->
+			<result name="projectvoteinfolist">/projectForms/projectVoteInfoByYear.jsp</result>
+			<result name="projectvoteinfobar">/projectForms/projectVoteInfoByYearBar.jsp
+			</result>
+			<!-- 第一块 -->
+			<result name="projectcountryclassifylist">/projectForms/projectCountryClassifyByYear.jsp
+			</result>
+			<result name="projectcountryclassifybar">/projectForms/projectCountryClassifyByYearBar.jsp
+			</result>
+			<!-- 第二块 -->
+			<result name="projectcountrycheckedlist">/projectForms/projectCountryCheckedByYear.jsp
+			</result>
+			<result name="projectcountrycheckedbar">/projectForms/projectCountryCheckedByYearBar.jsp
+			</result>
+			<!-- 第三块 -->
+			<result name="projectcountryspecialfundlist">/projectForms/projectCountryFundByYear.jsp
+			</result>
+			<result name="projectcountryspecialfundbar">/projectForms/projectCountryFundByYearBar.jsp
+			</result>
+			<!-- 第四块 -->
+			<result name="projectcountryfundlist">/projectForms/projectCountryFundByYear.jsp
+			</result>
+			<result name="projectcountryfundbar">/projectForms/projectCountryFundByYearBar.jsp
+			</result>
+			<!-- 第五块 -->
+			<result name="projectclassifyfundlist">/projectForms/projectClassifyFundByYear.jsp
+			</result>
+			<result name="projectclassifyfundbar">/projectForms/projectClassifyFundByYearBar.jsp
+			</result>
+			<!-- 第六块 -->
+			<result name="villageresidentcount">/projectForms/VillageResidentCount.jsp</result>
+		</action>
+
+		<action name="user_*" class="com.hwadee.action.UserAction"
+			method="{1}">
+			<result name="login_success">/index.jsp</result>
+			<result name="logoutSuccess">/index.jsp</result>
+			<result name="userlist">/user/user_list.jsp</result>
+			<result name="addsuccess" type="redirect">user_userList.action</result>
+			<result name="addfailure">/user/user_add.jsp</result>
+			<result name="toedituser">/user/user_edit.jsp</result>
+			<result name="editsuccess" type="redirect">user_userList.action</result>
+			<result name="editfailure" type="chain">
+				<param name="actionName">user_toEditUser</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="deletesuccess" type="redirect">user_userList.action
+			</result>
+			<result name="deletefailure" type="redirect">user_userList.action
+			</result>
+		</action>
+		<!-- 罗怀芍模块结束 -->
+
+		<!-- 詹亮名模块开始 -->
+		<action name="comment_*" class="com.hwadee.action.CommentAction"
+			method="{1}">
+			<result name="list_success">/projectLastStage/commentlist.jsp</result>
+			<result name="preAdd">/projectLastStage/addcomment.jsp</result>
+			<result name="save_success" type="chain">comment_list</result>
+			<result name="add_success" type="chain">comment_list</result>
+		</action>
+		<action name="accept_*" class="com.hwadee.action.AcceptInfoAction"
+			method="{1}">
+			<result name="list_success">/projectLastStage/acceptlist.jsp</result>
+			<result name="preAdd">/projectLastStage/addAccept.jsp</result>
+			<result name="save_success" type="chain">accept_list</result>
+			<result name="add_success" type="chain">accept_list</result>
+		</action>
+		<action name="testEva_*" class="com.hwadee.action.TestEvaluateInfoAction"
+			method="{1}">
+			<result name="list_success">/projectLastStage/testEvalist.jsp</result>
+			<result name="preAdd">/projectLastStage/addTestEva.jsp</result>
+			<result name="save_success" type="chain">testEva_list</result>
+			<result name="add_success" type="chain">testEva_list</result>
+		</action>
+		<!-- 项目归档 -->
+		<action name="record_*" class="com.hwadee.action.ProjectRecordAction" method="{1}">
+			<result name="list_success">/projectRecord/proRecord.jsp</result>
+			<result name="search_success">/projectRecord/proRecord.jsp</result>
+		</action>
+		<action name="s_*" class="com.hwadee.action.SearchAction" method="{1}">
+			<result name="search_success">/projectSearch/search.jsp</result>
+		</action>
+		<!-- 詹亮名模块结束 -->
+
+		<!-- 郭晨阳模块开始 -->
+		<action name="project_*" class="com.hwadee.action.ProjectAction"
+			method="{1}">
+			<result name="success">/projectFirstStage/index.jsp</result>
+			<result name="input">projectFirstStage/try_add.jsp</result>
+			<result name="projectList">/projectFirstStage/project_list.jsp</result>
+		</action>
+		<action name="firstvote_*" class="com.hwadee.action.FirstVoteAction"
+			method="{1}">
+			<result name="success">/projectFirstStage/index.jsp</result>
+			<result name="inputFirstVote">/projectFirstStage/first_vote.jsp</result>
+			<result name="inputSecondMeltVote">/projectFirstStage/second_melt_vote.jsp</result>
+			<result name="inputSecondVote">/projectFirstStage/second_vote.jsp</result>
+			<result name="projectVoteList">/projectFirstStage/projectVote_list.jsp</result>
+		</action>
+		<action name="fundsbuget_*" class="com.hwadee.action.FundsBugetAction"
+			method="{1}">
+			<result name="success">/projectFirstStage/index.jsp</result>
+			<result name="input">/projectFirstStage/funds_buget.jsp</result>
+			<result name="fundsBugetList">/projectFirstStage/funds_buget_list.jsp</result>
+		</action>
+		<action name="edition_*" class="com.hwadee.action.CompleteEditionAction"
+			method="{1}">
+			<result name="success">/projectFirstStage/index.jsp</result>
+			<result name="input">/projectFirstStage/edition.jsp</result>
+			<result name="completeEditionList">/projectFirstStage/edition_list.jsp</result>
+		</action>
+		<action name="reportCheck_*" class="com.hwadee.action.ReportCheckAction"
+			method="{1}">
+			<result name="success">/projectFirstStage/index.jsp</result>
+			<result name="input">/projectFirstStage/report_check.jsp</result>
+			<result name="ReportCheckList">/projectFirstStage/report_check_list.jsp</result>
+		</action>
+		<!-- 郭晨阳模块结束 -->
+
+		<!-- 董宜模块开始 -->
+		<action name="implement_*" class="com.hwadee.action.ImplementAction"
+			method="{1}">
+			<!-- action name 有效内容： implement_saveJCInfo implement_commitJCInfo //竞岗情况 
+				保存/提交 implement_saveDEInfo implement_commitDEInfo //直接实施情况 保存/提交 implement_saveCEInfo 
+				implement_commitCEInfo //比选情况 保存/提交 implement_saveSBInfo implement_commitCEInfo 
+				//自建情况 保存/提交 implement_getList //获取所有实施阶段的项目列表 implement_getJCList //获取竞岗待完成的项目列表 
+				implement_getDEList //获取直接实施待完成的项目列表 implement_getCSList //获取比选待完成的项目列表 implement_getSBList 
+				//获取自建待完成的项目列表 implement_getJCPage //获取竞岗信息页 implement_getDEPage //获取直接实施信息页 
+				implement_getCEPage //获取比选信息页 implement_getSBPage //获取自建信息页 -->
+			<result name="OP_SUCCESS">/projectSecondStage/Success.jsp</result>
+			<result name="JUMP_TO_LIST">/projectSecondStage/implement_list.jsp</result>
+			<result name="JUMP_TO_JCI">/projectSecondStage/job_compete.jsp</result>
+			<result name="JUMP_TO_DEI">/projectSecondStage/direct_execute.jsp</result>
+			<result name="JUMP_TO_CSI">/projectSecondStage/compare_select.jsp</result>
+			<result name="JUMP_TO_SBI">/projectSecondStage/self_build.jsp</result>
+			<result name="BAD_REQUEST">/error.jsp</result>
+			<result name="FAILED">/index.jsp</result>
+		</action>
+		<action name="check_*" class="com.hwadee.action.SupervisionAction"
+			method="{1}">
+			<!-- action name 有效内容： check_savePSInfo check_commitPSInfo //进度监督检查情况 
+				保存/提交 check_saveFSInfo check_commitFSInfo //资金监督检查情况 保存/提交 -->
+			<result name="OP_SUCCESS">/projectSecondStage/Success.jsp</result>
+			<result name="JUMP_TO_PSL">/projectSecondStage/pro_super_list.jsp</result>
+			<result name="JUMP_TO_FSL">/projectSecondStage/fund_super_list.jsp</result>
+			<result name="JUMP_TO_PSI">/projectSecondStage/progress_check.jsp</result>
+			<result name="JUMP_TO_FSI">/projectSecondStage/funds_check.jsp</result>
+			<result name="BAD_REQUEST">/index.jsp</result>
+			<result name="FAILED">/index.jsp</result>
+		</action>
+		<!-- 董宜模块结束 -->
+
+		<!-- 王倩倩模块开始 -->
+		<action name="blog" class="com.hwadee.action.BlogAndRightsManage" method="blogList">
+			<result name="bloglist">/blogManage/bloglist.jsp</result>
+		</action>
+		<!-- 王倩倩模块结束 -->
+
+		<!-- 李勇模块开始 -->
+		<action name="projectc_*" class="com.hwadee.action.ProjectCancelAction"
+			method="{1}">
+			<result name="cancellist">/projectCancel/cancellist.jsp</result>
+			<result name="cancelsuccess" type="redirect">projectc_cancelList.action
+			</result>
+		</action>
+		<!-- 李勇模块结束 -->
+
+		<!-- 张静模块开始 -->
+		<action name="project_4" class="com.hwadee.action.ProjectAction"
+			method="{1}">
+
+		</action>
+		<!-- 张静模块结束 -->
+	</package>
+</struts>    
